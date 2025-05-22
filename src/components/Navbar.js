@@ -66,7 +66,7 @@ const Navbar = () => {
     { name: 'Industries', subItems: ['Financial', 'Healthcare', 'Retail'] },
     { name: 'Cases', subItems: ['Case Studies', 'Success Stories'] },
     { name: 'Insights', subItems: ['Blog', 'Reports'] },
-    { name: 'About', subItems: ['Company', 'Team'] },
+    { name: 'Abouts', subItems: ['Company', 'Team'] },
   ];
 
   const drawer = (
