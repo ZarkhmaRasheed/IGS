@@ -1,201 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-// import { 
-//   AppBar, 
-//   Toolbar, 
-//   Typography, 
-//   Button, 
-//   IconButton, 
-//   Menu, 
-//   MenuItem, 
-//   Box, 
-//   Container,
-//   useMediaQuery,
-//   useTheme,
-//   Drawer,
-//   List,
-//   ListItem,
-//   ListItemText,
-//   Divider,
-//   Collapse
-// } from '@mui/material';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import ExpandMore from '@mui/icons-material/ExpandMore';
-// import ExpandLess from '@mui/icons-material/ExpandLess';
-
-// const Navbar = () => {
-//   const theme = useTheme();
-//   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-//   const [mobileOpen, setMobileOpen] = useState(false);
-//   const [anchorEl, setAnchorEl] = useState(null);
-//   const [openSubMenu, setOpenSubMenu] = useState(null);
-//   const [scrolled, setScrolled] = useState(false);
-
-//   const handleDrawerToggle = () => {
-//     setMobileOpen(!mobileOpen);
-//   };
-
-//   const handleMenuOpen = (event, menu) => {
-//     setAnchorEl(event.currentTarget);
-//     setOpenSubMenu(menu);
-//   };
-
-//   const handleMenuClose = () => {
-//     setAnchorEl(null);
-//     setOpenSubMenu(null);
-//   };
-
-//   const handleSubMenuToggle = (menu) => {
-//     setOpenSubMenu(openSubMenu === menu ? null : menu);
-//   };
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       if (window.scrollY > 10) {
-//         setScrolled(true);
-//       } else {
-//         setScrolled(false);
-//       }
-//     };
-//     window.addEventListener('scroll', handleScroll);
-//     return () => window.removeEventListener('scroll', handleScroll);
-//   }, []);
-
-//   const navItems = [
-//     { name: 'Services', subItems: ['Consulting', 'Technology', 'Experience'] },
-//     { name: 'Industries', subItems: ['Financial', 'Healthcare', 'Retail'] },
-//     { name: 'Cases', subItems: ['Case Studies', 'Success Stories'] },
-//     { name: 'Insights', subItems: ['Blog', 'Reports'] },
-//     { name: 'Abouts', subItems: ['Company', 'Team'] },
-//   ];
-
-//   const drawer = (
-//     <Box sx={{ width: 250 }} role="presentation">
-//       <List>
-//         {navItems.map((item) => (
-//           <React.Fragment key={item.name}>
-//             <ListItem button onClick={() => handleSubMenuToggle(item.name)}>
-//               <ListItemText primary={item.name} />
-//               {openSubMenu === item.name ? <ExpandLess /> : <ExpandMore />}
-//             </ListItem>
-//             <Collapse in={openSubMenu === item.name} timeout="auto" unmountOnExit>
-//               <List component="div" disablePadding>
-//                 {item.subItems.map((subItem) => (
-//                   <ListItem button key={subItem} sx={{ pl: 4 }}>
-//                     <ListItemText primary={subItem} />
-//                   </ListItem>
-//                 ))}
-//               </List>
-//             </Collapse>
-//             <Divider />
-//           </React.Fragment>
-//         ))}
-//       </List>
-//     </Box>
-//   );
-
-//   return (
-//     <AppBar 
-//       position="fixed" 
-//       sx={{ 
-//         backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.7)',
-//         transition: 'background-color 0.3s ease',
-//         boxShadow: 'none',
-//       }}
-//     >
-//       <Container maxWidth="xl">
-//         <Toolbar disableGutters>
-//           <Typography
-//             variant="h6"
-//             noWrap
-//             component={Link}
-//             to="/"
-//             sx={{
-//               mr: 2,
-//               display: 'flex',
-//               fontWeight: 700,
-//               color: 'inherit',
-//               textDecoration: 'none',
-//             }}
-//           >
-//             IGS
-//           </Typography>
-
-//           {!isMobile ? (
-//             <Box sx={{ flexGrow: 1, display: 'flex', ml: 3 }}>
-//               {navItems.map((item) => (
-//                 <Box key={item.name}>
-//                   <Button
-//                     color="inherit"
-//                     endIcon={<ExpandMore />}
-//                     onClick={(e) => handleMenuOpen(e, item.name)}
-//                     sx={{ mx: 1 }}
-//                   >
-//                     {item.name}
-//                   </Button>
-//                   <Menu
-//                     anchorEl={anchorEl}
-//                     open={openSubMenu === item.name}
-//                     onClose={handleMenuClose}
-//                     MenuListProps={{ onMouseLeave: handleMenuClose }}
-//                     sx={{ mt: 1 }}
-//                   >
-//                     {item.subItems.map((subItem) => (
-//                       <MenuItem key={subItem} onClick={handleMenuClose}>
-//                         {subItem}
-//                       </MenuItem>
-//                     ))}
-//                   </Menu>
-//                 </Box>
-//               ))}
-//             </Box>
-//           ) : (
-//             <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
-//               <IconButton
-//                 color="inherit"
-//                 aria-label="open drawer"
-//                 edge="start"
-//                 onClick={handleDrawerToggle}
-//               >
-//                 <MenuIcon />
-//               </IconButton>
-//             </Box>
-//           )}
-
-//           <Box sx={{ display: 'flex', ml: 2 }}>
-//             <Button color="inherit" variant="outlined" sx={{ mr: 1 }}>
-//               Contact
-//             </Button>
-//           </Box>
-//         </Toolbar>
-//       </Container>
-
-//       <Drawer
-//         anchor="right"
-//         open={mobileOpen}
-//         onClose={handleDrawerToggle}
-//         ModalProps={{ keepMounted: true }}
-//       >
-//         {drawer}
-//       </Drawer>
-//     </AppBar>
-//   );
-// };
-
-// export default Navbar;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -204,7 +6,8 @@ import {
   Toolbar, 
   Typography, 
   Button, 
-  IconButton, 
+  IconButton,
+  MenuItem,
   Menu,  
   Box, 
   Container,
@@ -232,8 +35,10 @@ const Navbar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [secondaryAnchorEl, setSecondaryAnchorEl] = useState(null);
   const [openSubMenu, setOpenSubMenu] = useState(null);
   const [currentMenu, setCurrentMenu] = useState(null);
+  const [currentSecondaryMenu, setCurrentSecondaryMenu] = useState(null);
   const [searchOpen, setSearchOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -241,6 +46,11 @@ const Navbar = () => {
   };
 
   const handleMenuOpen = (event, menu) => {
+    // Close if clicking the same menu that's already open
+    if (currentMenu === menu) {
+      handleMenuClose();
+      return;
+    }
     setAnchorEl(event.currentTarget);
     setCurrentMenu(menu);
   };
@@ -248,6 +58,21 @@ const Navbar = () => {
   const handleMenuClose = () => {
     setAnchorEl(null);
     setCurrentMenu(null);
+  };
+
+  const handleSecondaryMenuOpen = (event, menu) => {
+    // Close if clicking the same menu that's already open
+    if (currentSecondaryMenu === menu) {
+      handleSecondaryMenuClose();
+      return;
+    }
+    setSecondaryAnchorEl(event.currentTarget);
+    setCurrentSecondaryMenu(menu);
+  };
+
+  const handleSecondaryMenuClose = () => {
+    setSecondaryAnchorEl(null);
+    setCurrentSecondaryMenu(null);
   };
 
   const handleSubMenuToggle = (menu) => {
@@ -258,7 +83,7 @@ const Navbar = () => {
     setSearchOpen(!searchOpen);
   };
 
-  // Navigation structure matching IBM's layout
+  // Navigation structure
   const topNavItems = [
     { 
       name: 'Products', 
@@ -378,11 +203,51 @@ const Navbar = () => {
   ];
 
   const secondaryNavItems = [
-    'Consulting',
-    'Technology',
-    'Design',
-    'Operations',
-    'Support'
+    { 
+      name: 'Consulting', 
+      subItems: [
+        'Strategy Consulting',
+        'Digital Transformation',
+        'Business Consulting',
+        'IT Consulting'
+      ]
+    },
+    { 
+      name: 'Technology', 
+      subItems: [
+        'Cloud Services',
+        'AI & Machine Learning',
+        'Data Analytics',
+        'Cybersecurity'
+      ]
+    },
+    { 
+      name: 'Design', 
+      subItems: [
+        'UX/UI Design',
+        'Product Design',
+        'Service Design',
+        'Design Thinking'
+      ]
+    },
+    { 
+      name: 'Operations', 
+      subItems: [
+        'Business Process Optimization',
+        'Supply Chain Management',
+        'IT Operations',
+        'Quality Assurance'
+      ]
+    },
+    { 
+      name: 'Support', 
+      subItems: [
+        'Technical Support',
+        'Customer Success',
+        'Managed Services',
+        'Training'
+      ]
+    }
   ];
 
   const renderDropdownMenu = () => {
@@ -476,6 +341,50 @@ const Navbar = () => {
     );
   };
 
+  const renderSecondaryDropdownMenu = () => {
+    const currentItem = secondaryNavItems.find(item => item.name === currentSecondaryMenu);
+    if (!currentItem) return null;
+
+    return (
+      <Menu
+        anchorEl={secondaryAnchorEl}
+        open={Boolean(secondaryAnchorEl)}
+        onClose={handleSecondaryMenuClose}
+        MenuListProps={{ 
+          onMouseLeave: handleSecondaryMenuClose,
+          sx: { 
+            p: 1,
+            minWidth: 200
+          }
+        }}
+        PaperProps={{
+          sx: {
+            boxShadow: theme.shadows[4],
+            mt: 1
+          }
+        }}
+      >
+        {currentItem.subItems.map((item, index) => (
+          <MenuItem 
+            key={index} 
+            component={Link} 
+            to={`/${currentSecondaryMenu.toLowerCase()}/${item.toLowerCase().replace(/\s+/g, '-')}`}
+            onClick={handleSecondaryMenuClose}
+            sx={{
+              py: 1,
+              px: 2,
+              '&:hover': {
+                backgroundColor: 'rgba(0,0,0,0.05)'
+              }
+            }}
+          >
+            {item}
+          </MenuItem>
+        ))}
+      </Menu>
+    );
+  };
+
   const drawer = (
     <Box sx={{ width: 320, height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -487,7 +396,7 @@ const Navbar = () => {
       <Divider />
       <Box sx={{ flexGrow: 1, overflow: 'auto' }}>
         <List>
-          {topNavItems.map((item) => (
+          {[...secondaryNavItems, ...topNavItems].map((item) => (
             <React.Fragment key={item.name}>
               <ListItem button onClick={() => handleSubMenuToggle(item.name)}>
                 <ListItemText primary={item.name} primaryTypographyProps={{ fontWeight: 'medium' }} />
@@ -497,16 +406,24 @@ const Navbar = () => {
                 <List component="div" disablePadding>
                   {item.subItems.map((section, sectionIndex) => (
                     <React.Fragment key={sectionIndex}>
-                      <ListItem sx={{ pl: 4, pt: 2, pb: 0 }}>
-                        <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-                          {section.title}
-                        </Typography>
-                      </ListItem>
-                      {section.items.map((subItem, i) => (
-                        <ListItem button key={i} sx={{ pl: 6, py: 1 }}>
-                          <ListItemText primary={subItem} />
+                      {section.title && (
+                        <ListItem sx={{ pl: 4, pt: 2, pb: 0 }}>
+                          <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                            {section.title}
+                          </Typography>
                         </ListItem>
-                      ))}
+                      )}
+                      {section.items ? (
+                        section.items.map((subItem, i) => (
+                          <ListItem button key={i} sx={{ pl: section.title ? 6 : 4, py: 1 }}>
+                            <ListItemText primary={subItem} />
+                          </ListItem>
+                        ))
+                      ) : (
+                        <ListItem button sx={{ pl: 4, py: 1 }}>
+                          <ListItemText primary={section} />
+                        </ListItem>
+                      )}
                     </React.Fragment>
                   ))}
                 </List>
@@ -566,10 +483,9 @@ const Navbar = () => {
                     <Box sx={{ display: 'flex' }}>
                       {secondaryNavItems.map((item) => (
                         <Button
-                          key={item}
+                          key={item.name}
                           color="inherit"
-                          component={Link}
-                          to={`/${item.toLowerCase()}`}
+                          onClick={(e) => handleSecondaryMenuOpen(e, item.name)}
                           sx={{ 
                             px: 2,
                             fontSize: '0.875rem',
@@ -579,7 +495,7 @@ const Navbar = () => {
                             }
                           }}
                         >
-                          {item}
+                          {item.name}
                         </Button>
                       ))}
                     </Box>
@@ -638,8 +554,8 @@ const Navbar = () => {
                   </IconButton>
                   <InputBase
                     sx={{ ml: 1, flex: 1, color: '#fff' }}
-                    placeholder="Search IDM Consulting"
-                    inputProps={{ 'aria-label': 'search IDM consulting' }}
+                    placeholder="Search IGS Consulting"
+                    inputProps={{ 'aria-label': 'search IGS consulting' }}
                   />
                   <IconButton 
                     sx={{ p: '10px', color: '#fff' }} 
@@ -675,7 +591,6 @@ const Navbar = () => {
                       color="inherit"
                       endIcon={<ExpandMore />}
                       onClick={(e) => handleMenuOpen(e, item.name)}
-                      onMouseEnter={(e) => handleMenuOpen(e, item.name)}
                       sx={{ 
                         mx: 1,
                         textTransform: 'none',
@@ -713,8 +628,9 @@ const Navbar = () => {
         </Container>
       </AppBar>
 
-      {/* Dropdown Menu */}
+      {/* Dropdown Menus */}
       {renderDropdownMenu()}
+      {renderSecondaryDropdownMenu()}
 
       {/* Mobile Drawer */}
       <Drawer
