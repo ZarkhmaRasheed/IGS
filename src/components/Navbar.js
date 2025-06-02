@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -46,13 +45,13 @@ const Navbar = () => {
   };
 
   const handleMenuOpen = (event, menu) => {
-    // Close if clicking the same menu that's already open
     if (currentMenu === menu) {
-      handleMenuClose();
-      return;
+      setAnchorEl(null);
+      setCurrentMenu(null);
+    } else {
+      setAnchorEl(event.currentTarget);
+      setCurrentMenu(menu);
     }
-    setAnchorEl(event.currentTarget);
-    setCurrentMenu(menu);
   };
 
   const handleMenuClose = () => {
@@ -61,13 +60,13 @@ const Navbar = () => {
   };
 
   const handleSecondaryMenuOpen = (event, menu) => {
-    // Close if clicking the same menu that's already open
     if (currentSecondaryMenu === menu) {
-      handleSecondaryMenuClose();
-      return;
+      setSecondaryAnchorEl(null);
+      setCurrentSecondaryMenu(null);
+    } else {
+      setSecondaryAnchorEl(event.currentTarget);
+      setCurrentSecondaryMenu(menu);
     }
-    setSecondaryAnchorEl(event.currentTarget);
-    setCurrentSecondaryMenu(menu);
   };
 
   const handleSecondaryMenuClose = () => {
@@ -249,141 +248,138 @@ const Navbar = () => {
       ]
     }
   ];
+const renderDropdownMenu = () => {
+  const currentItem = topNavItems.find(item => item.name === currentMenu);
+  if (!currentItem) return null;
 
-  const renderDropdownMenu = () => {
-    const currentItem = topNavItems.find(item => item.name === currentMenu);
-    if (!currentItem) return null;
-
-    return (
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleMenuClose}
-        MenuListProps={{ 
-          onMouseLeave: handleMenuClose,
-          sx: { 
-            p: 0,
-            width: '100vw',
-            maxWidth: '100%',
-            left: 0,
-            right: 0,
-            transform: 'none !important',
-            top: '64px !important'
-          }
-        }}
-        PaperProps={{
-          sx: {
-            width: '100vw',
-            maxWidth: '100%',
-            maxHeight: 'calc(100vh - 64px)',
-            borderRadius: 0,
-            boxShadow: theme.shadows[8],
-            p: 4,
-            backgroundColor: '#f4f4f4'
-          }
-        }}
-      >
-        <Container maxWidth="xl">
-          <Grid container spacing={4}>
-            {currentItem.subItems.map((section, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Typography variant="h6" sx={{ 
-                  mb: 2,
-                  color: theme.palette.primary.main,
-                  fontWeight: 600
-                }}>
-                  {section.title}
-                </Typography>
-                <List dense disablePadding>
-                  {section.items.map((item, i) => (
-                    <ListItem 
-                      key={i} 
-                      disableGutters
-                      sx={{
-                        py: 1,
-                        '&:hover': {
-                          backgroundColor: 'rgba(0,0,0,0.05)'
+  return (
+    <Menu
+      anchorEl={anchorEl}
+      open={Boolean(anchorEl)}
+      onClose={handleMenuClose}
+      MenuListProps={{ 
+        sx: { 
+          p: 0,
+          width: '100vw',
+          maxWidth: '100%',
+          left: 0,
+          right: 0,
+          transform: 'none !important',
+          top: '64px !important'
+        }
+      }}
+      PaperProps={{
+        sx: {
+          width: '100vw',
+          maxWidth: '100%',
+          maxHeight: 'calc(100vh - 64px)',
+          borderRadius: 0,
+          boxShadow: theme.shadows[8],
+          p: 4,
+          backgroundColor: '#f4f4f4'
+        }
+      }}
+    >
+      <Container maxWidth="xl">
+        <Grid container spacing={4}>
+          {currentItem.subItems.map((section, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Typography variant="h6" sx={{ 
+                mb: 2,
+                color: theme.palette.primary.main,
+                fontWeight: 600
+              }}>
+                {section.title}
+              </Typography>
+              <List dense disablePadding>
+                {section.items.map((item, i) => (
+                  <ListItem 
+                    key={i} 
+                    disableGutters
+                    sx={{
+                      py: 1,
+                      '&:hover': {
+                        backgroundColor: 'rgba(0,0,0,0.05)'
+                      }
+                    }}
+                  >
+                    <ListItemText
+                      primary={item}
+                      primaryTypographyProps={{
+                        sx: {
+                          fontWeight: 400,
+                          fontSize: '0.875rem'
                         }
                       }}
-                    >
-                      <ListItemText
-                        primary={item}
-                        primaryTypographyProps={{
-                          sx: {
-                            fontWeight: 400,
-                            fontSize: '0.875rem'
-                          }
-                        }}
-                      />
-                      <ArrowForwardIcon fontSize="small" sx={{ ml: 1, opacity: 0.6 }} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Grid>
-            ))}
-            <Grid item xs={12} sx={{ mt: 2 }}>
-              <Button 
-                variant="contained" 
-                size="large"
-                sx={{
-                  backgroundColor: theme.palette.primary.main,
-                  '&:hover': {
-                    backgroundColor: theme.palette.primary.dark
-                  }
-                }}
-              >
-                Explore all {currentMenu}
-              </Button>
+                    />
+                    <ArrowForwardIcon fontSize="small" sx={{ ml: 1, opacity: 0.6 }} />
+                  </ListItem>
+                ))}
+              </List>
             </Grid>
+          ))}
+          <Grid item xs={12} sx={{ mt: 2 }}>
+            <Button 
+              variant="contained" 
+              size="large"
+              sx={{
+                backgroundColor: theme.palette.primary.main,
+                '&:hover': {
+                  backgroundColor: theme.palette.primary.dark
+                }
+              }}
+            >
+              Explore all {currentMenu}
+            </Button>
           </Grid>
-        </Container>
-      </Menu>
-    );
-  };
+        </Grid>
+      </Container>
+    </Menu>
+  );
+};
 
-  const renderSecondaryDropdownMenu = () => {
-    const currentItem = secondaryNavItems.find(item => item.name === currentSecondaryMenu);
-    if (!currentItem) return null;
+const renderSecondaryDropdownMenu = () => {
+  const currentItem = secondaryNavItems.find(item => item.name === currentSecondaryMenu);
+  if (!currentItem) return null;
 
-    return (
-      <Menu
-        anchorEl={secondaryAnchorEl}
-        open={Boolean(secondaryAnchorEl)}
-        onClose={handleSecondaryMenuClose}
-        MenuListProps={{ 
-          onMouseLeave: handleSecondaryMenuClose,
-          sx: { 
-            p: 1,
-            minWidth: 200
-          }
-        }}
-        PaperProps={{
-          sx: {
-            boxShadow: theme.shadows[4],
-            mt: 1
-          }
-        }}
-      >
-        {currentItem.subItems.map((item, index) => (
-          <MenuItem 
-            key={index} 
-            component={Link} 
-            to={`/${currentSecondaryMenu.toLowerCase()}/${item.toLowerCase().replace(/\s+/g, '-')}`}
-            onClick={handleSecondaryMenuClose}
-            sx={{
-              py: 1,
-              px: 2,
-              '&:hover': {
-                backgroundColor: 'rgba(0,0,0,0.05)'
-              }
-            }}
-          >
-            {item}
-          </MenuItem>
-        ))}
-      </Menu>
-    );
-  };
+  return (
+    <Menu
+      anchorEl={secondaryAnchorEl}
+      open={Boolean(secondaryAnchorEl)}
+      onClose={handleSecondaryMenuClose}
+      MenuListProps={{ 
+        sx: { 
+          p: 1,
+          minWidth: 200
+        }
+      }}
+      PaperProps={{
+        sx: {
+          boxShadow: theme.shadows[4],
+          mt: 1
+        }
+      }}
+    >
+      {currentItem.subItems.map((item, index) => (
+        <MenuItem 
+          key={index} 
+          component={Link} 
+          to={`/${currentSecondaryMenu.toLowerCase()}/${item.toLowerCase().replace(/\s+/g, '-')}`}
+          onClick={handleSecondaryMenuClose}
+          sx={{
+            py: 1,
+            px: 2,
+            '&:hover': {
+              backgroundColor: 'rgba(0,0,0,0.05)'
+            }
+          }}
+        >
+          {item}
+        </MenuItem>
+      ))}
+    </Menu>
+  );
+};
 
   const drawer = (
     <Box sx={{ width: 320, height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -485,6 +481,7 @@ const Navbar = () => {
                         <Button
                           key={item.name}
                           color="inherit"
+                          endIcon={currentSecondaryMenu === item.name ? <ExpandLess /> : <ExpandMore />}
                           onClick={(e) => handleSecondaryMenuOpen(e, item.name)}
                           sx={{ 
                             px: 2,
@@ -589,7 +586,7 @@ const Navbar = () => {
                   <Box key={item.name}>
                     <Button
                       color="inherit"
-                      endIcon={<ExpandMore />}
+                      endIcon={currentMenu === item.name ? <ExpandLess /> : <ExpandMore />}
                       onClick={(e) => handleMenuOpen(e, item.name)}
                       sx={{ 
                         mx: 1,
